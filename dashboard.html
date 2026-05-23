@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Discover</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./dashboard.css">
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="top-nav-dash">
+        <div class="nav-container">
+            <div class="headline-lg text-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="/dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 20px;">eco</span>
+                    EcoTrack
+                </a>
+            </div>
+            <div class="nav-links-dash">
+                <a href="/dashboard.html" class="label-sm text-primary" style="border-bottom: 2px solid var(--primary);">Observatory</a>
+                <a href="/history.html" class="label-sm text-on-surface-variant hover:text-primary">History</a>
+                <a href="/profile.html" class="label-sm text-on-surface-variant hover:text-primary">Profile</a>
+                <a href="/settings.html" class="label-sm text-on-surface-variant hover:text-primary">Settings</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-layout">
+        <!-- Hero Section -->
+        <section class="hero-dash">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr5QKBf1an7KCW_vQbr1kJZW8dLdPMshoY1tEFCVR-0zd5peRPhPOO7HEfeo4ScubtPAyb01kPm9cpOAyWUw5Yn752BfXwFv-GZmKbIa7tyQGwaEpQEAkz0XUZ_vNmZwVCofHwrF-eJLDPnnb49ttCvEJWoo5pT35GTLaeD7tN6UY8YzZhQHB_N5tt7sroQRwyTmNsxdXLPO_8I7IyAefjiq6EXptxQ9nRycpAQjqT_Yh9dMsMKGLbqA0wgiFRpSwHMSgZKeJbnCpN" alt="Cinematic forest">
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-left">
+                    <span id="greeting-text" class="label-sm text-primary mb-4" style="display: block; text-transform: none;">Good morning, Explorer.</span>
+                    <h1 class="display-xl text-primary" style="margin-bottom: 2rem;">Today’s Carbon Score</h1>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <div class="growth-ring">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="ring-bg" cx="50" cy="50" fill="none" r="45" stroke-width="4"></circle>
+                                <circle id="score-ring" class="ring-progress" cx="50" cy="50" fill="none" r="45" stroke-dasharray="282.7" stroke-dashoffset="282.7" stroke-width="6"></circle>
+                            </svg>
+                            <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <span id="score-value" class="headline-lg text-primary">0</span>
+                                <span class="label-sm text-on-surface-variant" style="text-transform: none;">/100</span>
+                            </div>
+                        </div>
+                        <p class="body-md text-on-surface-variant" style="max-width: 20rem;">
+                            Log your activities today to see your score bloom.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="glass-panel organic-shadow">
+                        <div style="border-radius: 0.5rem; overflow: hidden; margin-bottom: 1rem;">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_E6HP9Ob4EEg_cH3kuETylnLcFJD2xmTiCWeAkVeHxgft9G9Z2sYBF9KBemfzuxtvbTPPGf89hzV6xde-PcPXLx8FSuPjX9Ys8mcIgTyNHmAvxVt6KELsrHl4Wt2ZwXWeXYKkvQc4ggUwAgbPmKEl9qD8Shx4ssGZaqGWp8pkjecme_9goJrgKwk041vaRAP1FVqCwsOUxYoQhgCdJFEX9LJB0ktZIleIkprK-TV38EtGan6SPVPqhj2B8QzHps2qdSv9HVEAOoeW" alt="Field Note" style="width: 100%; height: 12rem; object-fit: cover;">
+                        </div>
+                        <span class="label-sm text-secondary" style="display: block; margin-bottom: 0.5rem;">Field Note</span>
+                        <h3 id="field-notes-title" class="headline-lg text-primary" style="font-size: 20px; line-height: 28px; margin-bottom: 0.5rem;">The Canopy Effect</h3>
+                        <p id="field-notes-text" class="body-md text-on-surface-variant">Small adjustments in your daily commute are stacking up. Notice the clearing air.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="metrics-section">
+            <div class="metrics-header">
+                <h2 class="headline-lg text-primary">Daily Footprint</h2>
+                <button class="btn-primary" style="width: auto; padding: 0.75rem 1.5rem;" onclick="window.location.href='/log_activity.html'">
+                    <span class="material-symbols-outlined">add</span>
+                    <span class="label-sm text-on-primary">Log Activity</span>
+                </button>
+            </div>
+
+            <div class="metrics-grid">
+                <!-- Transport -->
+                <div class="metric-card metric-card-1 bg-secondary-container organic-shadow">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
+                        <span class="material-symbols-outlined">directions_car</span>
+                        <span class="label-sm">Transport</span>
+                    </div>
+                    <div>
+                        <span id="metric-transport" class="display-xl" style="font-size: 40px; line-height: 48px; display: block;">0.0</span>
+                        <span class="body-md" style="opacity: 0.8;">kg CO2</span>
+                    </div>
+                </div>
+
+                <!-- Food -->
+                <div class="metric-card metric-card-2 bg-tertiary-fixed organic-shadow">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
+                        <span class="material-symbols-outlined">restaurant</span>
+                        <span class="label-sm">Food</span>
+                    </div>
+                    <div>
+                        <span id="metric-food" class="display-xl" style="font-size: 40px; line-height: 48px; display: block;">0.0</span>
+                        <span class="body-md" style="opacity: 0.8;">kg CO2</span>
+                    </div>
+                </div>
+
+                <!-- Energy -->
+                <div class="metric-card metric-card-3 bg-surface-container-high organic-shadow">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
+                        <span class="material-symbols-outlined">bolt</span>
+                        <span class="label-sm">Energy</span>
+                    </div>
+                    <div>
+                        <span id="metric-energy" class="display-xl" style="font-size: 40px; line-height: 48px; display: block;">0.0</span>
+                        <span class="body-md" style="opacity: 0.8;">kg CO2</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journal Section -->
+        <section class="journal-section">
+            <div class="journal-left">
+                <h2 class="headline-lg text-primary mb-10">Weekly Emissions</h2>
+                <div style="position: relative; height: 300px; width: 100%; display: flex; align-items: flex-end; padding: 0 1rem;">
+                    <svg id="weekly-graph-svg" style="position: absolute; inset: 0; width: 100%; height: 100%;" preserveAspectRatio="none" viewBox="0 0 100 100">
+                        <path stroke="rgba(23, 52, 28, 0.2)" stroke-width="2" fill="none" d="M0,80 Q20,60 40,70 T80,30 T100,50"></path>
+                        <path id="graph-trend-line" class="vine-line" stroke="var(--secondary)" stroke-width="3" fill="none" d="M0,90 Q30,70 50,85 T90,40 T100,60"></path>
+                    </svg>
+                    <div style="width: 100%; display: flex; justify-content: space-between; position: absolute; bottom: 0; border-top: 1px solid rgba(194, 200, 191, 0.3); padding-top: 1rem;" class="label-sm text-on-surface-variant">
+                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="journal-right glass-panel organic-shadow">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    <h2 class="headline-lg text-primary" style="font-size: 24px;">Journal</h2>
+                </div>
+                
+                <div id="journal-feed" style="max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="journal-entry active">
+                        <p class="body-md text-on-surface-variant mb-2">"Welcome to the forest. Your journey begins today."</p>
+                        <span class="label-sm text-secondary" style="text-transform: none;">System • Just now</span>
+                    </div>
+                </div>
+
+                <form id="journal-form" style="margin-top: 2rem; position: relative;">
+                    <input type="text" id="journal-input" class="input-field" placeholder="Reflect on today..." required>
+                    <button type="submit" style="position: absolute; right: 0; top: 0.5rem; background: none; border: none; cursor: pointer; color: var(--primary);">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_upward</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: var(--surface-container); border-top: 1px solid rgba(194, 200, 191, 0.3); padding: var(--section-gap) var(--margin-desktop); text-align: center;">
+        <div class="headline-lg text-primary mb-4">EcoTrack</div>
+        <p class="body-md text-on-surface-variant">© 2024 EcoTrack. Nurturing the digital wilderness.</p>
+    </footer>
+
+    <!-- Removed Activity Modal -->
+    
+    <script type="module" src="./dashboard.js"></script>
+</body>
+</html>

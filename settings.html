@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Settings</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./settings.css">
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="top-nav-dash">
+        <div class="nav-container">
+            <div class="headline-lg text-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="/dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 20px;">eco</span>
+                    EcoTrack
+                </a>
+            </div>
+            <div class="nav-links-dash">
+                <a href="/dashboard.html" class="label-sm text-on-surface-variant hover:text-primary">Observatory</a>
+                <a href="/history.html" class="label-sm text-on-surface-variant hover:text-primary">History</a>
+                <a href="/profile.html" class="label-sm text-on-surface-variant hover:text-primary">Profile</a>
+                <a href="/settings.html" class="label-sm text-primary" style="border-bottom: 2px solid var(--primary);">Settings</a>
+            </div>
+            <button class="btn-primary" style="width: auto; padding: 0.75rem 1.5rem;" onclick="handleLogout()">
+                Sign Out
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="settings-layout">
+        
+        <!-- Page Header -->
+        <section class="settings-header">
+            <h1 class="display-xl text-primary" style="margin-bottom: 0.5rem;">Settings</h1>
+            <p class="body-md text-on-surface-variant">Personalize your EcoTrack experience</p>
+        </section>
+
+        <!-- Settings Container -->
+        <div class="settings-container">
+
+            <!-- Preferences Section -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <span class="material-symbols-outlined text-secondary" style="font-size: 24px;">tune</span>
+                    <div>
+                        <h2 class="headline-lg text-primary" style="font-size: 20px;">Preferences</h2>
+                        <p class="label-sm text-on-surface-variant">Customize your tracking experience</p>
+                    </div>
+                </div>
+
+                <div class="settings-options">
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Carbon Offset Goal</span>
+                            <span class="label-sm text-on-surface-variant">Monthly target in kg CO2e</span>
+                        </div>
+                        <div class="setting-control">
+                            <input type="number" id="carbon-goal" class="input-field" value="50" min="0" max="1000">
+                            <span class="input-unit">kg CO2e</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Unit Preference</span>
+                            <span class="label-sm text-on-surface-variant">Distance and weight measurements</span>
+                        </div>
+                        <select class="input-field" id="unit-preference">
+                            <option value="metric">Metric (km, kg)</option>
+                            <option value="imperial">Imperial (mi, lbs)</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Theme</span>
+                            <span class="label-sm text-on-surface-variant">Display preference</span>
+                        </div>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-theme="light">Light</button>
+                            <button class="toggle-btn" data-theme="dark">Dark</button>
+                            <button class="toggle-btn" data-theme="auto">Auto</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <span class="material-symbols-outlined text-secondary" style="font-size: 24px;">notifications</span>
+                    <div>
+                        <h2 class="headline-lg text-primary" style="font-size: 20px;">Notifications</h2>
+                        <p class="label-sm text-on-surface-variant">Control when and how you're notified</p>
+                    </div>
+                </div>
+
+                <div class="settings-options">
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Daily Reminder</span>
+                            <span class="label-sm text-on-surface-variant">Get reminded to log activities</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="daily-reminder" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Goal Alerts</span>
+                            <span class="label-sm text-on-surface-variant">Alert when you're close to your goal</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="goal-alerts" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Weekly Summary</span>
+                            <span class="label-sm text-on-surface-variant">Receive your impact summary every week</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="weekly-summary" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Privacy Section -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <span class="material-symbols-outlined text-secondary" style="font-size: 24px;">privacy_tip</span>
+                    <div>
+                        <h2 class="headline-lg text-primary" style="font-size: 20px;">Privacy & Data</h2>
+                        <p class="label-sm text-on-surface-variant">Manage your information and preferences</p>
+                    </div>
+                </div>
+
+                <div class="settings-options">
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Public Profile</span>
+                            <span class="label-sm text-on-surface-variant">Allow others to see your impact</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="public-profile">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="body-md text-primary">Data Retention</span>
+                            <span class="label-sm text-on-surface-variant">How long we keep your activity data</span>
+                        </div>
+                        <select class="input-field" id="data-retention">
+                            <option value="30">30 Days</option>
+                            <option value="90" selected>90 Days</option>
+                            <option value="365">1 Year</option>
+                            <option value="unlimited">Unlimited</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Danger Zone Section -->
+            <section class="settings-section danger-zone">
+                <div class="section-header">
+                    <span class="material-symbols-outlined" style="font-size: 24px; color: var(--error);">warning</span>
+                    <div>
+                        <h2 class="headline-lg" style="font-size: 20px; color: var(--error);">Danger Zone</h2>
+                        <p class="label-sm text-on-surface-variant">Irreversible actions</p>
+                    </div>
+                </div>
+
+                <div class="settings-options">
+                    <button class="btn-danger" id="delete-data-btn" onclick="handleDeleteData()">
+                        <span class="material-symbols-outlined">delete_forever</span>
+                        Delete All Data
+                    </button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Save Button -->
+        <div class="settings-footer">
+            <button id="save-btn" class="btn-primary" onclick="handleSaveSettings()" style="width: auto; padding: 0.75rem 2rem;">
+                <span class="material-symbols-outlined">save</span>
+                Save Changes
+            </button>
+        </div>
+
+    </main>
+
+    <script type="module" src="./settings.js"></script>
+</body>
+</html>

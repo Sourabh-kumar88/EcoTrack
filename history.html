@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - History</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./history.css">
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="top-nav-dash">
+        <div class="nav-container">
+            <div class="headline-lg text-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="/dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 20px;">eco</span>
+                    EcoTrack
+                </a>
+            </div>
+            <div class="nav-links-dash">
+                <a href="/dashboard.html" class="label-sm text-on-surface-variant hover:text-primary">Observatory</a>
+                <a href="/history.html" class="label-sm text-primary" style="border-bottom: 2px solid var(--primary);">History</a>
+                <a href="/profile.html" class="label-sm text-on-surface-variant hover:text-primary">Profile</a>
+                <a href="/settings.html" class="label-sm text-on-surface-variant hover:text-primary">Settings</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="history-layout">
+        <!-- Header Section -->
+        <header class="history-header">
+            <div class="header-text">
+                <span class="label-sm text-secondary uppercase-tracking">Archive & Insights</span>
+                <h1 class="display-xl text-primary">Your Footprint History</h1>
+                <p class="body-md text-on-surface-variant mt-medium max-w-lg">
+                    A quiet reflection on your ecological journey. Tracking seven days of carbon intensity relative to the Indian sustainability threshold.
+                </p>
+            </div>
+            <div class="header-legend hidden-mobile">
+                <div class="legend-item">
+                    <span class="legend-dot bg-secondary-fixed"></span>
+                    <span class="label-sm text-on-surface-variant">Daily Emission</span>
+                    <span class="legend-line"></span>
+                    <span class="label-sm text-on-surface-variant">Indian Budget (5.5kg)</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Visualization Section -->
+        <section class="history-viz-section">
+            <!-- Line Chart Mockup -->
+            <div class="graph-card">
+                <div class="graph-card-header">
+                    <h3 class="headline-lg text-primary">Emissions Trend</h3>
+                    <div class="graph-tabs">
+                        <span class="tab active">Week</span>
+                        <span class="tab inactive">Month</span>
+                    </div>
+                </div>
+                <div class="graph-container" id="emissions-chart">
+                    <!-- Budget Line -->
+                    <div class="budget-line" id="budget-line" style="bottom: 50%;">
+                        <span class="budget-label">Threshold 5.5kg</span>
+                    </div>
+                    <!-- Bars injected by JS -->
+                </div>
+            </div>
+
+            <!-- Summary Card -->
+            <div class="summary-card">
+                <div>
+                    <span class="label-sm opacity-80 uppercase-tracking text-secondary-fixed">Weekly Total</span>
+                    <div class="summary-total mt-small">
+                        <span id="weekly-total-value">0.0</span> <span class="summary-unit opacity-60">kg CO2e</span>
+                    </div>
+                </div>
+                <div class="summary-details">
+                    <p class="body-md italic opacity-70" id="summary-quote">"The most sustainable way is the path already walked by nature."</p>
+                    <div class="achievement-row">
+                        <div class="achievement-icon">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">park</span>
+                        </div>
+                        <div class="label-sm">
+                            <div class="text-on-primary" id="budget-status-title">Under Budget</div>
+                            <div class="text-on-primary-dim" id="budget-status-detail">0.0kg saved this week</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed History List -->
+        <section class="history-list-section">
+            <h3 class="headline-lg text-primary mb-large">Daily Logs</h3>
+            <div class="log-list" id="daily-logs-list">
+                <!-- Rows injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="headline-lg text-secondary">EcoTrack</div>
+                <p class="label-sm text-on-surface-variant">© 2026 EcoTrack. Nurturing the Digital Canopy.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Templates for JS injection -->
+    <template id="chart-bar-template">
+        <div class="graph-bar-wrapper group">
+            <div class="graph-bar transition-height" style="height: 0%;"></div>
+            <span class="graph-day label-sm mt-small">Day</span>
+        </div>
+    </template>
+
+    <template id="log-row-template">
+        <div class="log-row group">
+            <div class="log-date-col">
+                <div class="log-day-number headline-lg opacity-40">00</div>
+                <div>
+                    <div class="log-date-text font-bold text-primary">Date</div>
+                    <div class="log-status-text label-sm text-on-surface-variant uppercase-tracking">Status</div>
+                </div>
+            </div>
+            <div class="log-icons-col">
+                <div class="log-icons-stack"></div>
+                <span class="log-activities-count label-sm text-on-surface-variant">0 activities</span>
+            </div>
+            <div class="log-amount-col">
+                <div class="text-right">
+                    <div class="log-amount-text font-bold text-primary">0.0 kg</div>
+                    <div class="log-budget-text font-bold text-small">budget</div>
+                </div>
+                <button class="material-symbols-outlined nav-arrow">arrow_forward_ios</button>
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="./history.js"></script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | EcoTrack</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .organic-mask {
+            clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%, 8% 50%);
+        }
+        @media (max-width: 768px) {
+            .organic-mask {
+                clip-path: none;
+            }
+        }
+        
+        .signup-layout {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+        }
+        @media (min-width: 769px) {
+            .signup-layout {
+                flex-direction: row;
+            }
+        }
+
+        .form-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem var(--margin-mobile);
+            z-index: 10;
+            position: relative;
+        }
+        @media (min-width: 769px) {
+            .form-section {
+                width: 40%;
+                padding: 3rem 3rem 3rem var(--margin-desktop);
+            }
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 28rem;
+        }
+
+        .hero-section {
+            display: none;
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 60%;
+            overflow: hidden;
+        }
+        @media (min-width: 769px) {
+            .hero-section {
+                display: block;
+            }
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.1);
+            transition: transform 2s;
+        }
+        .hero-section:hover .hero-image {
+            transform: scale(1.15);
+        }
+
+        .mobile-hero {
+            width: 100%;
+            height: 16rem;
+            overflow: hidden;
+            order: -1; /* Appears first on mobile */
+        }
+        @media (min-width: 769px) {
+            .mobile-hero {
+                display: none;
+            }
+        }
+        .mobile-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .glass-card {
+            position: absolute;
+            bottom: var(--margin-desktop);
+            right: var(--margin-desktop);
+            background: rgba(251, 249, 244, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 24rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .glass-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .glass-card p {
+            color: var(--on-surface-variant);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .glass-card .subtitle-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to left, transparent, transparent, rgba(251, 249, 244, 0.1));
+            pointer-events: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 769px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .btn-primary-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: var(--on-primary);
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        @media (min-width: 769px) {
+            .btn-primary-large {
+                width: auto;
+            }
+        }
+        .btn-primary-large:hover { opacity: 0.9; }
+        .btn-primary-large:active { transform: scale(0.95); }
+
+        /* Top Nav Overrides */
+        .top-nav {
+            position: relative;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-nav" style="position: relative; width: 100%; max-width: 80rem; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem var(--margin-mobile); z-index: 50;">
+        <a href="/" class="headline-lg text-primary" style="font-weight: 700; transition: opacity 0.2s;">EcoTrack</a>
+        <nav class="nav-links" style="display: none; align-items: center; gap: 2rem;">
+            <a href="#" class="label-sm text-on-surface-variant hover:opacity-80">Impact</a>
+            <a href="#" class="label-sm text-on-surface-variant hover:opacity-80">Research</a>
+            <a href="#" class="label-sm text-primary" style="font-weight: 700;">Join the Forest</a>
+        </nav>
+        <button class="text-primary" style="display: block; background: none; border: none; cursor: pointer; padding: 0.5rem;" id="mobile-menu-btn">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </header>
+
+    <main class="signup-layout">
+        <div class="mobile-hero">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_FuM9bIOMHdwGOAhx2wY7v8af7EVCQXSMPnXU2qoChihQjxDLZEMS-nDibhBmiDy0SscAm4foehvdoF-6iAW9q_df98pzzf4bDZyclmTWqOFnTwpK0Py3dKjqGuqUvmm-c27fCrH2JRFxqpX1R7cc214QbtYOg1kGQH_rYt-Evt5koET6ChCeERG26p5ClrGXEP4JVuFeRk6Hp7ufmDCnPNMckpMazgJEr5GBzqqJQBr8QZ7CjGa1ncex99gZVYdU6QZUNN6_NdP" alt="Waterfall Mobile">
+        </div>
+
+        <section class="form-section">
+            <div class="form-container">
+                <header class="mb-10">
+                    <h1 class="headline-lg text-primary mb-2">Plant your digital seeds</h1>
+                    <p class="body-md text-on-surface-variant">Join EcoTrack and start nurturing your environmental footprint today.</p>
+                </header>
+
+                <form id="signup-form">
+                    <div class="input-group">
+                        <label for="name" class="label-sm text-on-surface-variant" style="text-transform: none;">Full Name</label>
+                        <input type="text" id="name" class="input-field" placeholder="John Muir" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email" class="label-sm text-on-surface-variant" style="text-transform: none;">Email Address</label>
+                        <input type="email" id="email" class="input-field" placeholder="explorer@ecotrack.org" required>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label for="password" class="label-sm text-on-surface-variant" style="text-transform: none;">Password</label>
+                            <input type="password" id="password" class="input-field" placeholder="••••••••" required>
+                            <small class="label-sm text-on-surface-variant" style="opacity: 0.7; margin-top: 0.5rem;">Min 6 characters</small>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label for="confirm_password" class="label-sm text-on-surface-variant" style="text-transform: none;">Confirm</label>
+                            <input type="password" id="confirm_password" class="input-field" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <div id="error-message" class="label-sm" style="color: var(--error); display: none; margin-bottom: 1rem;"></div>
+
+                    <div style="padding-top: 1.5rem;">
+                        <button type="submit" class="btn-primary-large label-sm" id="signup-btn">
+                            Create Account
+                            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+                        </button>
+                    </div>
+
+                    <div class="divider mt-4 mb-4">
+                        <span class="label-sm" style="text-transform: none;">or nurture with</span>
+                    </div>
+
+                    <div class="social-buttons">
+                        <button type="button" class="btn-outline" id="google-signup-btn">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1q63KqItLX1jp3ggotzcbPRy3lBAO8EpHyITenrkffhSsFC18Lckq8hc9w15yLOJ3ZiRVasLCWtj11yAOAyAxQnLASw8bnffG-irGl4uGx1hZNjEHDLlb84c9pr4n-C59VN3Zp-MgubAYVwAQPgY7dV6BgP1NIEQ9xxDiVM5VuP1LURG5lvetNL-gARwhJg0YcZNdtqN3aOFnVAdgPYE-m8cGvYfuPHJ7_95oYnRzP-aYNMoDoRiKe7wTcsCj-5rATUja-zQL7h9" alt="Google" style="width: 16px; height: 16px;">
+                            <span class="label-sm">Google</span>
+                        </button>
+                        <button type="button" class="btn-outline" id="apple-signup-btn">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">apps</span>
+                            <span class="label-sm">Apple</span>
+                        </button>
+                    </div>
+                </form>
+
+                <p class="label-sm text-on-surface-variant mt-12" style="text-transform: none;">
+                    Already part of the ecosystem? 
+                    <a href="/signin.html" class="text-primary hover-underline" style="font-weight: 700;">Sign in</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="hero-section organic-mask" id="hero-section">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_FuM9bIOMHdwGOAhx2wY7v8af7EVCQXSMPnXU2qoChihQjxDLZEMS-nDibhBmiDy0SscAm4foehvdoF-6iAW9q_df98pzzf4bDZyclmTWqOFnTwpK0Py3dKjqGuqUvmm-c27fCrH2JRFxqpX1R7cc214QbtYOg1kGQH_rYt-Evt5koET6ChCeERG26p5ClrGXEP4JVuFeRk6Hp7ufmDCnPNMckpMazgJEr5GBzqqJQBr8QZ7CjGa1ncex99gZVYdU6QZUNN6_NdP" alt="Waterfall" class="hero-image" id="hero-img-signup">
+            
+            <div class="glass-card">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">eco</span>
+                <h3 class="headline-lg" style="font-size: 28px; line-height: 36px;">Preserving the Flow</h3>
+                <p>"When we try to pick out anything by itself, we find it hitched to everything else in the Universe."</p>
+                <div class="subtitle-line">
+                    <div style="height: 2px; width: 2rem; background-color: var(--secondary);"></div>
+                    <span class="label-sm text-secondary" style="letter-spacing: 0.1em;">The Yosemite Vision</span>
+                </div>
+            </div>
+            
+            <div class="gradient-overlay"></div>
+        </section>
+    </main>
+
+    <footer style="width: 100%; background: transparent; border-top: 1px solid rgba(194, 200, 191, 0.3);">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 3rem var(--margin-mobile); max-width: 80rem; margin: 0 auto; gap: 2rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: center;">
+                <span class="headline-lg text-primary">EcoTrack</span>
+                <p class="label-sm text-secondary" style="opacity: 0.7; text-transform: none;">© 2024 EcoTrack. Nurturing the digital forest.</p>
+            </div>
+            <nav style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem 1rem;">
+                <a href="#" class="label-sm text-on-surface-variant hover-underline" style="opacity: 0.7; text-transform: none;">Privacy Policy</a>
+                <a href="#" class="label-sm text-on-surface-variant hover-underline" style="opacity: 0.7; text-transform: none;">Terms of Service</a>
+                <a href="#" class="label-sm text-on-surface-variant hover-underline" style="opacity: 0.7; text-transform: none;">Help Center</a>
+                <a href="#" class="label-sm text-primary hover-underline" style="font-weight: 700; text-transform: none;">Sustainability Report</a>
+            </nav>
+        </div>
+    </footer>
+
+    <style>
+        /* Mobile adjustment for nav links */
+        @media (min-width: 769px) {
+            #mobile-menu-btn { display: none !important; }
+            .nav-links { display: flex !important; }
+            footer > div { flex-direction: row; text-align: left; }
+            footer > div > div { text-align: left; }
+        }
+    </style>
+
+    <script type="module">
+        import { supabase } from './supabaseClient.js';
+        
+        // Handle form submission
+        async function handleSignUpSubmit(event) {
+            event.preventDefault();
+            
+            // Safely get DOM elements
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm_password');
+            const errorMsg = document.getElementById('error-message');
+            const signupBtn = document.getElementById('signup-btn');
+            
+            if (!nameInput || !emailInput || !passwordInput || !confirmPasswordInput || !errorMsg || !signupBtn) {
+                console.error('Required form elements not found');
+                return;
+            }
+            
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            // Validation
+            if (!name || !email || !password || !confirmPassword) {
+                errorMsg.textContent = 'Please fill in all fields';
+                errorMsg.style.display = 'block';
+                errorMsg.style.color = 'var(--error)';
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                errorMsg.textContent = 'Please enter a valid email address';
+                errorMsg.style.display = 'block';
+                errorMsg.style.color = 'var(--error)';
+                return;
+            }
+            
+            if (name.length < 2) {
+                errorMsg.textContent = 'Name must be at least 2 characters';
+                errorMsg.style.display = 'block';
+                errorMsg.style.color = 'var(--error)';
+                return;
+            }
+            
+            if (password.length < 6) {
+                errorMsg.textContent = 'Password must be at least 6 characters';
+                errorMsg.style.display = 'block';
+                errorMsg.style.color = 'var(--error)';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                errorMsg.textContent = 'Passwords do not match';
+                errorMsg.style.display = 'block';
+                errorMsg.style.color = 'var(--error)';
+                return;
+            }
+            
+            try {
+                signupBtn.disabled = true;
+                signupBtn.textContent = 'Creating Account...';
+                errorMsg.style.display = 'none';
+                
+                // Sign up with Supabase
+                const { data: authData, error: authError } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: name
+                        }
+                    }
+                });
+                
+                if (authError) {
+                    throw authError;
+                }
+                
+                if (authData?.user) {
+                    const userId = authData.user.id;
+                    console.log('User created:', userId);
+                    
+                    // Create profile entry with correct column names
+                    const { data: profileData, error: profileError } = await supabase
+                        .from('profiles')
+                        .insert([{
+                            id: userId,
+                            name: name,
+                            bio: 'Small actions quietly shape a better future.',
+                            role: 'Mindful Explorer',
+                            avatar_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-a64pITLCtwy1KtFVsaGVoIBAxSvrQNLYW8eLilZX7ZCnOBYAvITSk94zTCeBx4f5I_f8-rZaqjY7paI67QIQJ7dPAv8DLeadb9yFumU1kxAvxUGrIIxlycoUAV0HcR3M6zSu1c2bBXqfFgMHMu2prCkpf03up_5ZUZjaDhbpQpBSH783dzAkc6k-dA3go8TNkAr0xweNYmcIoYYYdsJB-pX9m-qpmnLrVuP8zFFqNOaiG1R47sF00GHENBoGzoLy6GUcEuTtO-K4'
+                        }]);
+                    
+                    if (profileError) {
+                        console.warn('Profile creation error (non-blocking):', profileError);
+                    } else {
+                        console.log('Profile created successfully');
+                    }
+                    
+                    // Wait a moment for session to establish
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
+                    // Check if session is established
+                    const { data: { session } } = await supabase.auth.getSession();
+                    if (session) {
+                        window.location.href = '/dashboard.html';
+                    } else {
+                        if (errorMsg) {
+                            errorMsg.textContent = 'Account created! Please check your email to verify your account, then sign in.';
+                            errorMsg.style.color = 'var(--primary)';
+                            errorMsg.style.display = 'block';
+                        }
+                        signupBtn.disabled = false;
+                        signupBtn.textContent = 'Create Account';
+                        // Redirect to signin after 3 seconds
+                        setTimeout(() => {
+                            window.location.href = '/signin.html';
+                        }, 3000);
+                    }
+                }
+            } catch (error) {
+                console.error('Sign up error:', error);
+                
+                // Better error messages for different scenarios
+                let errorText = 'Failed to create account. Please try again.';
+                
+                if (error.message?.includes('rate limit')) {
+                    errorText = '⏳ Too many signup attempts. Please wait a few minutes before trying again.';
+                } else if (error.message?.includes('already registered')) {
+                    errorText = '❌ This email is already registered. Try signing in instead.';
+                } else if (error.message?.includes('invalid email')) {
+                    errorText = '❌ Please enter a valid email address.';
+                } else if (error.message?.includes('password')) {
+                    errorText = '❌ Password must be at least 6 characters long.';
+                } else {
+                    errorText = '❌ ' + (error.message || 'An error occurred');
+                }
+                
+                if (errorMsg) {
+                    errorMsg.textContent = errorText;
+                    errorMsg.style.color = 'var(--error)';
+                    errorMsg.style.display = 'block';
+                }
+                signupBtn.disabled = false;
+                signupBtn.textContent = 'Create Account';
+            }
+        }
+        
+        // Initialize when DOM is fully loaded
+        function initializeSignUp() {
+            // Check if already logged in
+            supabase.auth.getSession().then(({ data: { session } }) => {
+                if (session) {
+                    window.location.href = '/dashboard.html';
+                }
+            });
+            
+            // Setup auth state listener
+            supabase.auth.onAuthStateChange((event, session) => {
+                if (session && event === 'SIGNED_IN') {
+                    window.location.href = '/dashboard.html';
+                }
+            });
+            
+            // Attach form submission handler
+            const form = document.getElementById('signup-form');
+            if (form) {
+                form.addEventListener('submit', handleSignUpSubmit);
+            } else {
+                console.warn('Signup form not found');
+            }
+            
+            // Attach OAuth button handlers
+            const googleBtn = document.getElementById('google-signup-btn');
+            const appleBtn = document.getElementById('apple-signup-btn');
+            if (googleBtn) googleBtn.addEventListener('click', handleGoogleSignUp);
+            if (appleBtn) appleBtn.addEventListener('click', handleAppleSignUp);
+            
+            // Add subtle parallax to the right image on scroll or mouse move
+            const rightSection = document.getElementById('hero-img-signup');
+            if (rightSection && window.innerWidth > 768) {
+                window.addEventListener('mousemove', (e) => {
+                    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                    rightSection.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+                });
+            }
+        }
+        
+        // OAuth handlers
+        async function handleGoogleSignUp() {
+            try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: window.location.origin + '/dashboard.html'
+                    }
+                });
+                if (error) throw error;
+            } catch (error) {
+                console.error('Google sign-up error:', error);
+                const errorMsg = document.getElementById('error-message');
+                if (errorMsg) {
+                    errorMsg.textContent = '❌ Google sign-up failed. Please try again.';
+                    errorMsg.style.display = 'block';
+                }
+            }
+        }
+        
+        async function handleAppleSignUp() {
+            try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'apple',
+                    options: {
+                        redirectTo: window.location.origin + '/dashboard.html'
+                    }
+                });
+                if (error) throw error;
+            } catch (error) {
+                console.error('Apple sign-up error:', error);
+                const errorMsg = document.getElementById('error-message');
+                if (errorMsg) {
+                    errorMsg.textContent = '❌ Apple sign-up failed. Please try again.';
+                    errorMsg.style.display = 'block';
+                }
+            }
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeSignUp);
+        } else {
+            initializeSignUp();
+        }
+    </script>
+</body>
+</html>

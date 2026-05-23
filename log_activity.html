@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Log Activity</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./log_activity.css">
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="top-nav-dash">
+        <div class="nav-container">
+            <div class="headline-lg text-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="/dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 20px;">eco</span>
+                    EcoTrack
+                </a>
+            </div>
+            <div class="nav-links-dash">
+                <a href="/dashboard.html" class="label-sm text-on-surface-variant hover:text-primary">Observatory</a>
+                <a href="#" class="label-sm text-on-surface-variant hover:text-primary">History</a>
+                <a href="/profile.html" class="label-sm text-on-surface-variant hover:text-primary">Profile</a>
+                <a href="/settings.html" class="label-sm text-on-surface-variant hover:text-primary">Settings</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="log-layout">
+        <!-- Left: Form Area -->
+        <section class="form-area">
+            <header style="margin-bottom: 2rem;">
+                <h1 class="headline-lg text-primary" style="margin-bottom: 0.5rem;">What did you do today?</h1>
+                <p class="body-md text-on-surface-variant">Select an activity to calculate its environmental impact.</p>
+            </header>
+
+            <!-- Category Grid -->
+            <div class="category-grid">
+                <button class="category-card active" data-category="transport">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    <h3 class="label-sm" style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Vehicle</h3>
+                    <p class="body-md text-on-surface-variant" style="font-size: 14px;">Car, bike, bus, auto-rickshaw</p>
+                </button>
+                <button class="category-card" data-category="electricity">
+                    <span class="material-symbols-outlined">bolt</span>
+                    <h3 class="label-sm" style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Electricity</h3>
+                    <p class="body-md text-on-surface-variant" style="font-size: 14px;">Grid, LPG, solar, generator</p>
+                </button>
+                <button class="category-card" data-category="food">
+                    <span class="material-symbols-outlined">restaurant</span>
+                    <h3 class="label-sm" style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Food</h3>
+                    <p class="body-md text-on-surface-variant" style="font-size: 14px;">Meals, snacks, beverages</p>
+                </button>
+                <button class="category-card" data-category="shopping">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    <h3 class="label-sm" style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Shopping</h3>
+                    <p class="body-md text-on-surface-variant" style="font-size: 14px;">Clothes, gadgets, deliveries</p>
+                </button>
+            </div>
+
+            <!-- Active Form Section -->
+            <div class="active-form-section">
+                <h2 id="form-title" class="headline-lg text-primary" style="font-size: 28px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                    <span id="form-icon" class="material-symbols-outlined">directions_car</span>
+                    <span id="form-title-text">Vehicle Details</span>
+                </h2>
+
+                <form id="log-form">
+                    <!-- Dynamic Sub-options Container -->
+                    <div id="sub-options-container" style="margin-bottom: 2rem;">
+                        <label class="label-sm text-on-surface-variant" style="display: block; margin-bottom: 0.75rem; text-transform: uppercase;">Transport Type</label>
+                        <div id="sub-options" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Inputs Container -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                        <div>
+                            <label id="input-label" class="label-sm text-on-surface-variant" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase;">Distance</label>
+                            <div class="input-underline">
+                                <input type="number" id="primary-input" value="15" step="0.1" min="0" required>
+                                <select id="primary-unit">
+                                    <option value="km">km</option>
+                                    <option value="miles">miles</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label-sm text-on-surface-variant" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase;">Notes (Optional)</label>
+                            <div class="input-underline" style="border-color: var(--outline-variant);">
+                                <input type="text" id="notes-input" placeholder="e.g., Commute to work">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview & Action -->
+                    <div class="preview-bar">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span class="material-symbols-outlined text-primary">eco</span>
+                            <span class="body-md text-primary">Estimated CO2: <strong id="estimated-co2" style="font-weight: 700;">0.00 kg CO2e</strong></span>
+                        </div>
+                        <button type="submit" class="btn-primary label-sm" style="width: auto; padding: 0.75rem 2rem;">
+                            Add to today's log
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Right: Sidebar -->
+        <aside class="sidebar-area">
+            <div style="background: var(--surface-container-low); border-radius: 0.75rem; padding: 1.5rem; position: sticky; top: 100px; border: 1px solid rgba(194, 200, 191, 0.3);">
+                <h2 class="label-sm text-on-surface-variant" style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Your footprint today</h2>
+                
+                <!-- Score Card -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <div class="gauge-container">
+                        <div id="sidebar-gauge" class="gauge-progress"></div>
+                        <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                            <span id="sidebar-total" class="display-xl text-primary" style="line-height: 1;">0.0</span>
+                            <span class="label-sm text-on-surface-variant" style="margin-top: 0.25rem; text-transform: none;">kg CO2e</span>
+                        </div>
+                    </div>
+                    <p id="sidebar-status" class="body-md text-secondary" style="font-weight: 500; background: rgba(71, 103, 53, 0.1); padding: 0.25rem 1rem; border-radius: 9999px; font-size: 14px; margin-top: 1rem;">Looking good so far</p>
+                </div>
+
+                <!-- Breakdown -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 class="label-sm text-on-surface-variant" style="text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid rgba(194, 200, 191, 0.3); padding-bottom: 0.5rem; margin-bottom: 1rem;">Breakdown</h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span class="material-symbols-outlined text-outline" style="font-size: 18px;">directions_car</span>
+                            <span class="body-md" style="flex-grow: 1; font-size: 14px;">Vehicle</span>
+                            <span id="breakdown-transport" class="body-md text-primary" style="font-weight: 500; font-size: 14px;">0.0 kg</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span class="material-symbols-outlined text-outline" style="font-size: 18px;">bolt</span>
+                            <span class="body-md" style="flex-grow: 1; font-size: 14px;">Electricity</span>
+                            <span id="breakdown-electricity" class="body-md text-primary" style="font-weight: 500; font-size: 14px;">0.0 kg</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span class="material-symbols-outlined text-outline" style="font-size: 18px;">restaurant</span>
+                            <span class="body-md" style="flex-grow: 1; font-size: 14px;">Food</span>
+                            <span id="breakdown-food" class="body-md text-primary" style="font-weight: 500; font-size: 14px;">0.0 kg</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span class="material-symbols-outlined text-outline" style="font-size: 18px;">shopping_bag</span>
+                            <span class="body-md" style="flex-grow: 1; font-size: 14px;">Shopping</span>
+                            <span id="breakdown-shopping" class="body-md text-primary" style="font-weight: 500; font-size: 14px;">0.0 kg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logged Entries -->
+                <div>
+                    <h3 class="label-sm text-on-surface-variant" style="text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid rgba(194, 200, 191, 0.3); padding-bottom: 0.5rem; margin-bottom: 1rem;">Logged Entries</h3>
+                    <ul id="logged-entries-list" class="logged-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer style="background-color: var(--surface-container); padding: var(--section-gap) var(--margin-desktop); text-align: center; margin-top: auto;">
+        <div class="headline-lg text-primary mb-4">EcoTrack</div>
+        <p class="body-md text-on-surface-variant">© 2024 EcoTrack. Bridging data science with the natural world.</p>
+    </footer>
+
+    <script type="module" src="./log_activity.js"></script>
+</body>
+</html>
