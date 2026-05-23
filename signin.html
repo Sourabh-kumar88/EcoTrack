@@ -281,21 +281,6 @@
                     </div>
 
                     <button type="submit" class="btn-primary label-sm" id="signin-btn">Sign In</button>
-
-                    <div class="divider mt-4 mb-4">
-                        <span class="label-sm" style="text-transform: none;">or nurture with</span>
-                    </div>
-
-                    <div class="social-buttons">
-                        <button type="button" class="btn-outline" id="google-signin-btn">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1q63KqItLX1jp3ggotzcbPRy3lBAO8EpHyITenrkffhSsFC18Lckq8hc9w15yLOJ3ZiRVasLCWtj11yAOAyAxQnLASw8bnffG-irGl4uGx1hZNjEHDLlb84c9pr4n-C59VN3Zp-MgubAYVwAQPgY7dV6BgP1NIEQ9xxDiVM5VuP1LURG5lvetNL-gARwhJg0YcZNdtqN3aOFnVAdgPYE-m8cGvYfuPHJ7_95oYnRzP-aYNMoDoRiKe7wTcsCj-5rATUja-zQL7h9" alt="Google" style="width: 16px; height: 16px;">
-                            <span class="label-sm">Google</span>
-                        </button>
-                        <button type="button" class="btn-outline" id="apple-signin-btn">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">apps</span>
-                            <span class="label-sm">Apple</span>
-                        </button>
-                    </div>
                 </form>
 
                 <p class="label-sm text-on-surface-variant" style="text-align: center; text-transform: none;">
@@ -430,12 +415,7 @@
             } else {
                 console.warn('Sign in form not found');
             }
-            
-            // Attach OAuth button handlers
-            const googleBtn = document.getElementById('google-signin-btn');
-            const appleBtn = document.getElementById('apple-signin-btn');
-            if (googleBtn) googleBtn.addEventListener('click', handleGoogleSignIn);
-            if (appleBtn) appleBtn.addEventListener('click', handleAppleSignIn);
+
             
             // Atmospheric parallax hint
             window.addEventListener('mousemove', (e) => {
@@ -446,45 +426,6 @@
                     heroImg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
                 }
             });
-        }
-        
-        // OAuth handlers
-        async function handleGoogleSignIn() {
-            try {
-                const { data, error } = await supabase.auth.signInWithOAuth({
-                    provider: 'google',
-                    options: {
-                        redirectTo: window.location.origin + '/dashboard.html'
-                    }
-                });
-                if (error) throw error;
-            } catch (error) {
-                console.error('Google sign-in error:', error);
-                const errorMsg = document.getElementById('error-message');
-                if (errorMsg) {
-                    errorMsg.textContent = '❌ Google sign-in failed. Please try again.';
-                    errorMsg.style.display = 'block';
-                }
-            }
-        }
-        
-        async function handleAppleSignIn() {
-            try {
-                const { data, error } = await supabase.auth.signInWithOAuth({
-                    provider: 'apple',
-                    options: {
-                        redirectTo: window.location.origin + '/dashboard.html'
-                    }
-                });
-                if (error) throw error;
-            } catch (error) {
-                console.error('Apple sign-in error:', error);
-                const errorMsg = document.getElementById('error-message');
-                if (errorMsg) {
-                    errorMsg.textContent = '❌ Apple sign-in failed. Please try again.';
-                    errorMsg.style.display = 'block';
-                }
-            }
         }
         
         // Initialize when DOM is ready
