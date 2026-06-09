@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | EcoTrack</title>
+    <style>
+        .organic-mask {
+            clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%, 8% 50%);
+        }
+        @media (max-width: 768px) {
+            .organic-mask {
+                clip-path: none;
+            }
+        }
+        
+        .signup-layout {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+        }
+        @media (min-width: 769px) {
+            .signup-layout {
+                flex-direction: row;
+            }
+        }
+
+        .form-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem var(--margin-mobile);
+            z-index: 10;
+            position: relative;
+        }
+        @media (min-width: 769px) {
+            .form-section {
+                width: 40%;
+                padding: 3rem 3rem 3rem var(--margin-desktop);
+            }
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 28rem;
+        }
+
+        .hero-section {
+            display: none;
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 60%;
+            overflow: hidden;
+        }
+        @media (min-width: 769px) {
+            .hero-section {
+                display: block;
+            }
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.1);
+            transition: transform 2s;
+        }
+        .hero-section:hover .hero-image {
+            transform: scale(1.15);
+        }
+
+        .mobile-hero {
+            width: 100%;
+            height: 16rem;
+            overflow: hidden;
+            order: -1; /* Appears first on mobile */
+        }
+        @media (min-width: 769px) {
+            .mobile-hero {
+                display: none;
+            }
+        }
+        .mobile-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .glass-card {
+            position: absolute;
+            bottom: var(--margin-desktop);
+            right: var(--margin-desktop);
+            background: rgba(251, 249, 244, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 24rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .glass-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .glass-card p {
+            color: var(--on-surface-variant);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .glass-card .subtitle-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to left, transparent, transparent, rgba(251, 249, 244, 0.1));
+            pointer-events: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 769px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .btn-primary-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: var(--on-primary);
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        @media (min-width: 769px) {
+            .btn-primary-large {
+                width: auto;
+            }
+        }
+        .btn-primary-large:hover { opacity: 0.9; }
+        .btn-primary-large:active { transform: scale(0.95); }
+
+        /* Top Nav Overrides */
+        .top-nav {
+            position: relative;
+            background: transparent;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/signup-CG3gzsTg.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/dataclient-Cqehk7y_.js">
+  <link rel="stylesheet" crossorigin href="/assets/dataclient-CdRXTmyc.css">
+</head>
+<body>
+
+    <header class="top-nav" style="position: relative; width: 100%; max-width: 80rem; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem var(--margin-mobile); z-index: 50;">
+        <a href="/" class="headline-lg text-primary" style="font-weight: 700; transition: opacity 0.2s;">EcoTrack</a>
+        <nav class="nav-links" style="display: none; align-items: center; gap: 2rem;">
+            <a href="#" class="label-sm text-on-surface-variant hover:opacity-80">Impact</a>
+            <a href="#" class="label-sm text-on-surface-variant hover:opacity-80">Research</a>
+            <a href="#" class="label-sm text-primary" style="font-weight: 700;">Join the Forest</a>
+        </nav>
+        <button class="text-primary" style="display: block; background: none; border: none; cursor: pointer; padding: 0.5rem;" id="mobile-menu-btn">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </header>
+
+    <main class="signup-layout">
+        <div class="mobile-hero">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_FuM9bIOMHdwGOAhx2wY7v8af7EVCQXSMPnXU2qoChihQjxDLZEMS-nDibhBmiDy0SscAm4foehvdoF-6iAW9q_df98pzzf4bDZyclmTWqOFnTwpK0Py3dKjqGuqUvmm-c27fCrH2JRFxqpX1R7cc214QbtYOg1kGQH_rYt-Evt5koET6ChCeERG26p5ClrGXEP4JVuFeRk6Hp7ufmDCnPNMckpMazgJEr5GBzqqJQBr8QZ7CjGa1ncex99gZVYdU6QZUNN6_NdP" alt="Waterfall Mobile">
+        </div>
+
+        <section class="form-section">
+            <div class="form-container">
+                <header class="mb-10">
+                    <h1 class="headline-lg text-primary mb-2">Plant your digital seeds</h1>
+                    <p class="body-md text-on-surface-variant">Join EcoTrack and start nurturing your environmental footprint today.</p>
+                </header>
+
+                <form id="signup-form">
+                    <div class="input-group">
+                        <label for="name" class="label-sm text-on-surface-variant" style="text-transform: none;">Full Name</label>
+                        <input type="text" id="name" class="input-field" placeholder="John Muir" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email" class="label-sm text-on-surface-variant" style="text-transform: none;">Email Address</label>
+                        <input type="email" id="email" class="input-field" placeholder="explorer@ecotrack.org" required>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label for="password" class="label-sm text-on-surface-variant" style="text-transform: none;">Password</label>
+                            <input type="password" id="password" class="input-field" placeholder="••••••••" required>
+                            <small class="label-sm text-on-surface-variant" style="opacity: 0.7; margin-top: 0.5rem;">Min 6 characters</small>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label for="confirm_password" class="label-sm text-on-surface-variant" style="text-transform: none;">Confirm</label>
+                            <input type="password" id="confirm_password" class="input-field" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <div id="error-message" class="label-sm" style="color: var(--error); display: none; margin-bottom: 1rem;"></div>
+
+                    <div style="padding-top: 1.5rem;">
+                        <button type="submit" class="btn-primary-large label-sm" id="signup-btn">
+                            Create Account
+                            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+                        </button>
+                    </div>
+
+                    <div class="divider mt-4 mb-4">
+                        <span class="label-sm" style="text-transform: none;">or nurture with</span>
+                    </div>
+
+                    <div class="social-buttons">
+                        <button type="button" class="btn-outline" id="google-signup-btn">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1q63KqItLX1jp3ggotzcbPRy3lBAO8EpHyITenrkffhSsFC18Lckq8hc9w15yLOJ3ZiRVasLCWtj11yAOAyAxQnLASw8bnffG-irGl4uGx1hZNjEHDLlb84c9pr4n-C59VN3Zp-MgubAYVwAQPgY7dV6BgP1NIEQ9xxDiVM5VuP1LURG5lvetNL-gARwhJg0YcZNdtqN3aOFnVAdgPYE-m8cGvYfuPHJ7_95oYnRzP-aYNMoDoRiKe7wTcsCj-5rATUja-zQL7h9" alt="Google" style="width: 16px; height: 16px;">
+                            <span class="label-sm">Google</span>
+                        </button>
+                        <button type="button" class="btn-outline" id="apple-signup-btn">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">apps</span>
+                            <span class="label-sm">Apple</span>
+                        </button>
+                    </div>
+                </form>
+
+                <p class="label-sm text-on-surface-variant mt-12" style="text-transform: none;">
+                    Already part of the ecosystem? 
+                    <a href="/signin.html" class="text-primary hover-underline" style="font-weight: 700;">Sign in</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="hero-section organic-mask" id="hero-section">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_FuM9bIOMHdwGOAhx2wY7v8af7EVCQXSMPnXU2qoChihQjxDLZEMS-nDibhBmiDy0SscAm4foehvdoF-6iAW9q_df98pzzf4bDZyclmTWqOFnTwpK0Py3dKjqGuqUvmm-c27fCrH2JRFxqpX1R7cc214QbtYOg1kGQH_rYt-Evt5koET6ChCeERG26p5ClrGXEP4JVuFeRk6Hp7ufmDCnPNMckpMazgJEr5GBzqqJQBr8QZ7CjGa1ncex99gZVYdU6QZUNN6_NdP" alt="Waterfall" class="hero-image" id="hero-img-signup">
+            
+            <div class="glass-card">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">eco</span>
+                <h3 class="headline-lg" style="font-size: 28px; line-height: 36px;">Preserving the Flow</h3>
+                <p>"When we try to pick out anything by itself, we find it hitched to everything else in the Universe."</p>
+                <div class="subtitle-line">
+                    <div style="height: 2px; width: 2rem; background-color: var(--secondary);"></div>
+                    <span class="label-sm text-secondary" style="letter-spacing: 0.1em;">The Yosemite Vision</span>
+                </div>
+            </div>
+            
+            <div class="gradient-overlay"></div>
+        </section>
+    </main>
+
+    <footer style="width: 100%; background: transparent; border-top: 1px solid rgba(194, 200, 191, 0.3);">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 3rem var(--margin-mobile); max-width: 80rem; margin: 0 auto; gap: 2rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: center;">
+                <span class="headline-lg text-primary">EcoTrack</span>
+                <p class="label-sm text-secondary" style="opacity: 0.7; text-transform: none;">© 2026 EcoTrack. Nurturing the digital forest.</p>
+            </div>
+            <nav style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem 1rem;">
+                <a href="#" class="label-sm text-on-surface-variant hover-underline" style="opacity: 0.7; text-transform: none;">Privacy Policy</a>
+                <a href="#" class="label-sm text-on-surface-variant hover-underline" style="opacity: 0.7; text-transform: none;">Terms of Service</a>
+                <a href="#" class="label-sm text-on-surface-variant hover-underline" style="opacity: 0.7; text-transform: none;">Help Center</a>
+                <a href="#" class="label-sm text-primary hover-underline" style="font-weight: 700; text-transform: none;">Sustainability Report</a>
+            </nav>
+        </div>
+    </footer>
+
+    <style>
+        /* Mobile adjustment for nav links */
+        @media (min-width: 769px) {
+            #mobile-menu-btn { display: none !important; }
+            .nav-links { display: flex !important; }
+            footer > div { flex-direction: row; text-align: left; }
+            footer > div > div { text-align: left; }
+        }
+    </style>
+
+</body>
+</html>

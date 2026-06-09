@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Profile</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./profile.css">
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="top-nav-dash" id="top-nav">
+        <div class="nav-container">
+            <div class="headline-lg text-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="/dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 20px;">eco</span>
+                    EcoTrack
+                </a>
+            </div>
+            <div class="nav-links-dash">
+                <a href="/dashboard.html" class="label-sm text-on-surface-variant hover:text-primary">Observatory</a>
+                <a href="/history.html" class="label-sm text-on-surface-variant hover:text-primary">History</a>
+                <a href="/profile.html" class="label-sm text-primary" style="border-bottom: 2px solid var(--primary);">Profile</a>
+                <a href="/settings.html" class="label-sm text-on-surface-variant hover:text-primary">Settings</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Layout -->
+    <main class="profile-layout max-w-7xl px-margin py-12">
+        
+        <!-- PROFILE HERO SECTION (Soft Asymmetry & Organic Feel) -->
+        <section class="profile-hero organic-shadow">
+            <div class="hero-bg-container">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhtdnOh2g81fkpQf2resgrdc0kzCmHw-v3BJN2MAT1X5hRL90OIImqcye_zOUMjHsIyjIZ4FutY0Q-oZAdzvo6VA1dfNX501er5EyCnXpjeX46YoT4m7UmaJKBaX66VDYR-CwxLb7kd-w2J_qrEkM4ntuoW8lBb07vtxJy_luyQDbd-4kgAQY3y_8oQJHaBzcbf-d6RiPLxhV3iDcKwx7ARQq9ljdK4lBKgytuMbwhzCfiF2Z8Ktj2upbJMOicTCVm3KYQV2uyXnDE" alt="Scenic Forest Canopy background">
+                <div class="hero-bg-gradient"></div>
+            </div>
+            
+            <div class="hero-content-wrapper">
+                <!-- Profile details in Glassmorphic Panel -->
+                <div class="glass-panel-profile">
+                    <div class="profile-header-main">
+                        <div class="avatar-wrapper">
+                            <img id="profile-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-a64pITLCtwy1KtFVsaGVoIBAxSvrQNLYW8eLilZX7ZCnOBYAvITSk94zTCeBx4f5I_f8-rZaqjY7paI67QIQJ7dPAv8DLeadb9yFumU1kxAvxUGrIIxlycoUAV0HcR3M6zSu1c2bBXqfFgMHMu2prCkpf03up_5ZUZjaDhbpQpBSH783dzAkc6k-dA3go8TNkAr0xweNYmcIoYYYdsJB-pX9m-qpmnLrVuP8zFFqNOaiG1R47sF00GHENBoGzoLy6GUcEuTtO-K4" alt="Explorer Profile Picture">
+                        </div>
+                        <div class="profile-title-area">
+                            <h1 id="profile-display-name" class="profile-name">Julian Arbor</h1>
+                            <p class="profile-role-badge">
+                                <span class="material-symbols-outlined text-[16px]">psychiatry</span>
+                                <span id="profile-display-role">Mindful Explorer</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-edit-profile" id="edit-profile-trigger">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
+                        Edit Profile
+                    </button>
+                    
+                    <p id="profile-display-bio" class="profile-bio">
+                        "Small actions quietly shape a better future."
+                    </p>
+                    
+                    <div class="profile-stats-divider">
+                        <div style="flex-grow: 1;">
+                            <span class="label-sm text-surface-container-low" style="opacity: 0.8; display: block; margin-bottom: 4px;">Sustainability Streak</span>
+                            <span class="profile-name" style="font-size: 24px; display: flex; align-items: baseline; gap: 4px;">
+                                <span id="hero-streak-count">0</span> <span style="font-size: 14px; font-weight: 400; opacity: 0.8;">Days</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eco Impact Score Ring overlay -->
+                <div class="impact-circle-container">
+                    <div class="impact-circle-ring">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="impact-ring-bg" cx="50" cy="50" fill="none" r="44" stroke-width="4"></circle>
+                            <circle id="impact-score-ring" class="impact-ring-progress" cx="50" cy="50" fill="none" r="44" stroke-dasharray="276.46" stroke-dashoffset="276.46" stroke-width="5"></circle>
+                        </svg>
+                        <div class="impact-score-value-container">
+                            <span id="impact-score-value" class="impact-score-value">0.0</span>
+                            <span class="impact-score-label">Impact Score</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERSONAL IMPACT SECTION (Monthly savings) -->
+        <section style="margin-bottom: var(--section-gap);">
+            <h2 class="profile-section-title">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+                Monthly Impact
+            </h2>
+            <div class="monthly-impact-grid">
+                <!-- Card 1: CO2 Saved -->
+                <div class="impact-card card-1">
+                    <div class="impact-card-top">
+                        <span class="material-symbols-outlined">cloud</span>
+                        <div class="impact-trend-badge">
+                            <span class="material-symbols-outlined">arrow_downward</span>
+                        </div>
+                    </div>
+                    <div class="impact-card-bottom">
+                        <span class="impact-card-label">CO2 Logged</span>
+                        <span class="impact-card-value"><span id="impact-metric-co2">0.0</span> <span>kg</span></span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Water Conserved -->
+                <div class="impact-card card-2">
+                    <div class="impact-card-top">
+                        <span class="material-symbols-outlined">water_drop</span>
+                    </div>
+                    <div class="impact-card-bottom">
+                        <span class="impact-card-label">Water Conserved</span>
+                        <span class="impact-card-value"><span id="impact-metric-water">0</span> <span>L</span></span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Trees Equivalent -->
+                <div class="impact-card card-3">
+                    <div class="impact-card-top">
+                        <span class="material-symbols-outlined">park</span>
+                    </div>
+                    <div class="impact-card-bottom">
+                        <span class="impact-card-label">Trees Equivalent</span>
+                        <span class="impact-card-value"><span id="impact-metric-trees">0.0</span> <span>saplings</span></span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Streak (Asymmetric height styling) -->
+                <div class="impact-card card-4">
+                    <div style="position: absolute; right: -1rem; top: -1rem; width: 6rem; height: 6rem; background-color: rgba(23, 52, 28, 0.05); border-radius: 50%; filter: blur(12px); pointer-events: none;"></div>
+                    <div class="impact-card-top">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; color: var(--primary);">local_fire_department</span>
+                    </div>
+                    <div class="impact-card-bottom">
+                        <span class="impact-card-label">Current Streak</span>
+                        <span class="impact-card-value" style="color: var(--primary);"><span id="impact-metric-streak">0</span> <span>days</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVITY & JOURNAL SECTION (Two-column, Editorial flow) -->
+        <section class="profile-two-column">
+            
+            <!-- LEFT: Activity Graph (Spacious, negative space focus) -->
+            <div class="weekly-rhythm-panel">
+                <div class="weekly-header">
+                    <div>
+                        <h3>Weekly Rhythm</h3>
+                        <p>Your carbon emissions trend over the week.</p>
+                    </div>
+                    <span id="weekly-trend-badge" class="weekly-trend-chip">Active</span>
+                </div>
+                
+                <!-- Custom SVG Line Chart -->
+                <div class="graph-canvas-container">
+                    <div class="graph-grid-lines">
+                        <div class="graph-grid-line"></div>
+                        <div class="graph-grid-line"></div>
+                        <div class="graph-grid-line"></div>
+                    </div>
+                    
+                    <svg class="graph-svg-canvas" preserveAspectRatio="none" viewBox="0 0 100 100">
+                        <!-- Curved vine-like line chart path, filled dynamically -->
+                        <path id="graph-trend-path" class="graph-line" d="M 0,90 Q 20,90 35,90 T 70,90 T 100,90" style="stroke: var(--secondary); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; filter: drop-shadow(0 4px 6px rgba(71, 103, 53, 0.15));"></path>
+                        <!-- Dynamic points -->
+                        <g id="graph-points-group">
+                            <!-- Populated by JS -->
+                        </g>
+                    </svg>
+                    
+                    <div class="graph-x-labels">
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                        <span>Sun</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Field Notes Column -->
+            <div class="field-notes-column">
+                <div class="field-notes-image-card">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4CP1AUjppJYrnlUH0_4xEWYdk5eG3sWWLzf0YaSxeelpjdy32aB7nbMYm4Jo-5B0rGZ4SDqVcin0XEMbkHXuT9tWsRVYbZA0yRp5iEcnNPvDrXjUtkhjmos2NoZI0FQWwnPIlELIJPkzfxKnlYHaOvbnm7TgcFrJV_EotqQAxvDT8YL0ky297VwXfAio9Lv4Pbt7McJ3RKVUZJ9joRoZb4HrdHkBl1kQUZjsdqbrZNwWdX1ggq9RtNSbY9tFFX1c2ufkyPUZdk7CY" alt="Lush green mossy forest ferns close up">
+                </div>
+                
+                <div class="field-notes-card">
+                    <div class="field-notes-bg-decoration"></div>
+                    <span class="material-symbols-outlined field-notes-icon" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    <h3 class="field-notes-title">Field Notes</h3>
+                    <p id="field-notes-content" class="field-notes-body">
+                        "Your journey is in its initial phases. Log activities to generate your first environmental analysis entry."
+                    </p>
+                    <button class="btn-field-notes" onclick="window.location.href='/log_activity.html'">
+                        Log Entry
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER Component -->
+    <footer style="background-color: var(--surface-container); border-top: 1px solid rgba(194, 200, 191, 0.3); padding: var(--section-gap) var(--margin-desktop) 3rem var(--margin-desktop); text-align: center; margin-top: auto;">
+        <div class="headline-lg text-primary mb-4" style="font-style: italic; font-weight: 500; letter-spacing: -0.01em;">EcoTrack</div>
+        <p class="body-md text-on-surface-variant">© 2026 EcoTrack. A journal for the observant and the nurturing.</p>
+    </footer>
+
+    <!-- EDIT PROFILE MODAL -->
+    <div class="modal-overlay-profile" id="edit-profile-modal">
+        <div class="modal-card-profile">
+            <div class="modal-profile-header">
+                <h2>Edit Profile</h2>
+                <button class="btn-modal-close" id="edit-profile-close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <form id="edit-profile-form">
+                <!-- Avatar selection grid -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="avatar-picker-label">Select Avatar</span>
+                    <div class="avatar-selection-grid" id="avatar-picker-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Custom Avatar File Upload -->
+                <div style="margin-bottom: 2rem;">
+                    <span class="avatar-picker-label">Or upload your own picture</span>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
+                        <label for="avatar-file-input" class="btn-outline label-sm" style="font-size: 11px; padding: 0.5rem 1rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">upload_file</span>
+                            Choose Image
+                        </label>
+                        <input type="file" id="avatar-file-input" accept="image/*" style="display: none;">
+                        <span id="file-upload-status" class="body-md text-on-surface-variant" style="font-size: 13px;">No file chosen</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="edit-name" class="label-sm text-secondary">Full Name</label>
+                    <input type="text" id="edit-name" class="input-field" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="edit-role" class="label-sm text-secondary">Archetype / Role</label>
+                    <input type="text" id="edit-role" class="input-field" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="edit-bio" class="label-sm text-secondary">Bio Quote</label>
+                    <input type="text" id="edit-bio" class="input-field" required>
+                </div>
+
+                <button type="submit" class="btn-primary label-sm" style="margin-top: 2rem;">
+                    Save Profile Changes
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script references -->
+    <script type="module" src="./profile.js"></script>
+</body>
+</html>

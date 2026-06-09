@@ -1,0 +1,289 @@
+/* dashboard.css */
+
+.dashboard-layout {
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+/* Nav */
+.top-nav-dash {
+    background-color: rgba(251, 249, 244, 0.8);
+    backdrop-filter: blur(12px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    transition: background-color 0.3s;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--gutter) var(--margin-desktop);
+    max-width: 80rem;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .nav-container { padding: 1rem var(--margin-mobile); }
+}
+
+.nav-links-dash {
+    display: none;
+    gap: 2rem;
+}
+@media (min-width: 769px) {
+    .nav-links-dash { display: flex; }
+}
+
+/* Hero Section */
+.hero-dash {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: var(--section-gap) var(--margin-desktop);
+}
+@media (max-width: 768px) {
+    .hero-dash { padding: 4rem var(--margin-mobile); }
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--surface), rgba(251, 249, 244, 0.8), transparent);
+    z-index: 10;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gutter);
+}
+@media (min-width: 769px) {
+    .hero-content { grid-template-columns: repeat(12, 1fr); }
+    .hero-left { grid-column: span 7; }
+    .hero-right { grid-column: 9 / span 4; margin-top: 0; }
+}
+
+/* Growth Ring */
+.growth-ring {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.growth-ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+.ring-bg { stroke: var(--surface-variant); }
+.ring-progress {
+    stroke: var(--primary);
+    transition: stroke-dashoffset 1s ease-out;
+}
+
+.organic-shadow {
+    box-shadow: 0 10px 40px -10px rgba(23, 52, 28, 0.08);
+}
+
+.glass-panel {
+    background: rgba(251, 249, 244, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+/* Metrics Section */
+.metrics-section {
+    padding: var(--section-gap) var(--margin-desktop);
+    position: relative;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .metrics-section { padding: 4rem var(--margin-mobile); }
+}
+
+.metrics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+@media (min-width: 769px) {
+    .metrics-grid {
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--gutter);
+    }
+    .metric-card { grid-column: span 4; }
+    .metric-card-1 { margin-top: -2rem; }
+    .metric-card-3 { margin-top: 3rem; }
+}
+
+.metric-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: transform 0.3s;
+}
+.metric-card:hover { transform: translateY(-0.5rem); }
+
+.bg-secondary-container { background-color: var(--secondary-container); color: var(--on-secondary-container); }
+.bg-tertiary-fixed { background-color: var(--tertiary-fixed); color: var(--on-tertiary-fixed); }
+.bg-surface-container-high { background-color: var(--surface-container-high); color: var(--on-surface); }
+
+/* Journal Section */
+.journal-section {
+    padding: var(--section-gap) var(--margin-desktop);
+    max-width: 80rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--section-gap);
+    align-items: center;
+}
+@media (min-width: 769px) {
+    .journal-section { grid-template-columns: repeat(12, 1fr); }
+    .journal-left { grid-column: span 7; }
+    .journal-right { grid-column: span 5; }
+}
+
+.vine-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: growVine 2s ease-out forwards;
+}
+@keyframes growVine { to { stroke-dashoffset: 0; } }
+
+.journal-entry {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+.journal-entry.active { border-left: 2px solid var(--secondary-fixed); }
+.journal-entry.inactive { border-left: 2px solid rgba(194, 200, 191, 0.5); opacity: 0.7; }
+
+.journal-entry-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.journal-delete-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--on-surface-variant);
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.journal-entry:hover .journal-delete-btn,
+.journal-delete-btn:focus-visible {
+    opacity: 1;
+}
+
+@media (hover: hover) {
+    .journal-delete-btn {
+        opacity: 0;
+    }
+}
+
+.journal-delete-btn:hover {
+    background-color: var(--error-container);
+    color: var(--on-error-container);
+}
+
+.journal-delete-btn .material-symbols-outlined {
+    font-size: 1.125rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(27, 28, 25, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    background: var(--surface);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 28rem;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+}
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.modal-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.5rem;
+    background: transparent;
+    font-family: var(--font-body);
+}
+.modal-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}

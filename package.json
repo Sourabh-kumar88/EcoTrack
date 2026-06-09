@@ -1,0 +1,20 @@
+{
+  "name": "ecotrack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "ws": "^8.20.1"
+  }
+}
